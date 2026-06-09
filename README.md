@@ -16,7 +16,7 @@
     
     This system covers GMU off-campus housing experiences, including student reviews of nearby apartments, rental costs, safety perceptions, transportation options, and leasing advice.
 
-This knowledge is valuable because students making housing decisions need real experiences — hidden fees, maintenance problems, landlord behavior, and safety concerns — that official university sources never mention. GMU's official housing pages only provide listings and policies. The actual student-reported experiences are scattered across Reddit threads and informal forums, making them hard to search systematically. This RAG system brings that scattered knowledge into one queryable interface.
+This knowledge is valuable because students making housing decisions need real experiences - hidden fees, maintenance problems, landlord behavior, and safety concerns - that official university sources never mention. GMU's official housing pages only provide listings and policies. The actual student-reported experiences are scattered across Reddit threads and informal forums, making them hard to search systematically. This RAG system brings that scattered knowledge into one queryable interface.
 ---
 
 ## Document Sources
