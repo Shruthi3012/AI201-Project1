@@ -24,7 +24,7 @@ def handle_query(question):
     return result["answer"], sources
 
 with gr.Blocks(title="GMU Housing RAG") as demo:
-    gr.Markdown("# 🏡 GMU Housing RAG System")
+    gr.Markdown("# 🏡 GMU Off-Campus Housing")
     inp = gr.Textbox(label="Your question")
     btn = gr.Button("Ask")
     answer = gr.Textbox(label="Answer", lines=8)
@@ -34,7 +34,7 @@ with gr.Blocks(title="GMU Housing RAG") as demo:
 
 if __name__ == "__main__":
     print("=" * 40)
-    print(" GMU Housing RAG Starting ")
+    print(" GMU Housing ")
     print("=" * 40)
     run_ingestion()
     demo.launch()

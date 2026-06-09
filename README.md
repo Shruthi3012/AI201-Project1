@@ -132,6 +132,108 @@ Source attribution is handled programmatically, not left to the LLM. After gener
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
 
 ---
+## Retrieval Test results
+Q1: s off‑campus housing cheaper than dorms at GMU?
+
+**Top retrieved chunks:**
+1. reddit_off_campus_housing_cost.txt — rent ranges $750–$1200, townhouse $550 + utilities
+
+2. gmu_offcampus_housing_guide.txt — cost breakdown for studios ($1325) and one‑bedrooms ($1675)
+
+3. affordable_housing_virginia_square_ballston_gmu.txt — mentions $1400 for half of a two‑bedroom
+
+4. apartments_near_gmu_for_administrator.txt — budget up to $2200 for staff housing
+
+** Why relevant:** All retrieved chunks discuss off‑campus rent prices, but none mention dorm costs — explaining why the model correctly refused to answer.
+
+Q2: What platforms should GMU students use to find off‑campus housing?
+**Top retrieved chunks:**
+1.tips_for_offcampus_housing.txt — recommends och.gmu.edu and warns against Facebook/Craigslist
+
+2.reddit_offcampus_housing.txt — confirms och.gmu.edu and Apartments.com as safe options
+
+3.reddit_offcampus_housing_lessons.txt — mentions verified housing finder
+
+4.reddit_off_campus_housing_cost.txt — general housing cost context
+
+**Why relevant:  **Chunks directly mention och.gmu.edu and verified housing platforms, aligning perfectly with the expected answer.
+
+
+Q3: What do students say about Fairfax Square Apartments?
+**Top retrieved chunks:**
+1. reddit_fairfax_square_apartments.txt — rent ~$2750, mold, hidden fees, thin walls
+
+2. best_apartments_under_2k_near_gmu.txt — mentions Trillium and Fairfax Square comparisons
+
+3. reddit_offcampus_housing_lessons.txt — positive experience when not on ground floor
+
+**Why relevant:  **
+All chunks describe Fairfax Square experiences, including rent, amenities, and maintenance issues — producing a complete, accurate summary.
+---
+
+## Example Responses
+
+**Example 1 - In-scope Query**
+**User:** What do students say about Fairfax Square Apartments?
+**Answer:** 
+Students report the following about Fairfax Square Apartments: 
+
+1. The rent is approximately $2750 per month before utilities and deposits, which is considered high.
+2. Parking is adequate, the pool is nice, and neighbors are generally quiet.
+3. Management is not intrusive.
+4. The location is convenient and close to daily necessities.
+5. Sharing larger apartments or townhouses with multiple roommates can significantly reduce costs compared to Fairfax Square.
+6. There are concerns about bathroom mildew due to poor ventilation in some apartments.
+7. Living on a ground-floor unit may have a different experience compared to other units. 
+
+Overall, students have a generally positive experience at Fairfax Square Apartments, but with some drawbacks such as high cost and potential issues with ventilation.
+
+**Retrieved From:** 
+- reddit_fairfax_square_apartments.txt
+- reddit_offcampus_housing_lessons.txt
+- best_apartments_under_2k_near_gmu.txt
+
+
+**Example 2 - In-scope Query**
+**User:** What platforms should GMU students use to find off‑campus housing?
+**Answer:** GMU students should use the Off‑Campus Housing Finder at och.gmu.edu and Apartments.com. Avoid Facebook and Craigslist due to scam risks.
+**Retrieved From:** 
+- tips_for_offcampus_housing.txt
+- reddit_offcampus_housing.txt
+- reddit_offcampus_housing_lessons.txt
+
+**Example 3 - Out-of-scope Query**
+**User:** Is off‑campus housing cheaper than dorms at GMU?
+**Answer:** I don't have enough information in the provided documents.
+**Retrieved From:** 
+- reddit_offcampus_housing.txt
+- gmu_offcampus_housing_guide.txt
+- reddit_off_campus_housing_cost.txt
+- affordable_housing_virginia_square_ballston_gmu.txt
+
+
+---
+
+## Query Interface Description
+
+**Input Fields**
+- **Textbox:** User Question
+- **Button:** Ask
+
+**Output Fields**
+- **Answer Textbox:** Model's grounded response
+- **Retrieved From Textbox:** List of source filenames used
+
+**Sample Interaction Transcript**
+**User:** What should incoming GMU students know before signing a lease?
+**Answer:** Before signing a lease, incoming GMU students should know that leases are legal documents and should not be signed unless they have been fully read and understood. It's essential to carefully review the terms, including items like rent, fees, pet policies, security deposits, and maintenance responsibilities. Students should also be cautious with money, avoiding wire transfers and using traceable forms of payment. Additionally, they should verify the property and landlord before making any payments. It's also recommended to seek advice from an unbiased third party, such as Contemporary Student Services, if something in the lease seems excessive or unclear.
+**Retrieved From:**
+- tips_for_offcampus_housing.txt
+- reddit_offcampus_housing.txt
+- reddit_offcampus_housing_lessons.txt
+
+
+---
 
 ## Failure Case Analysis
 
@@ -164,6 +266,42 @@ Add a document containing GMU on-campus housing rates, such as the official GMU 
 
 ---
 
+## Sample Chunks
+
+**Chunk 1**
+- **Source:** `affordable_housing_virginia_square_ballston_gmu.txt`
+- **Chunk ID:** affordable_housing_virginia_square_ballston_gmu_0
+- **Text:** "An incoming GMU student was looking for affordable housing near Virginia Square or Ballston with Metro access. The student hoped to spend between $1,000 and $1,400 per month and preferred a roommate arrangement where each person had a private bathroom. Commenter 1 noted that Arlington is expensive and suggested Springfield, Falls Church, Annandale, and parts of Alexandria."
+
+---
+
+**Chunk 2**
+- **Source:** `reddit_fairfax_square_apartments.txt`
+- **Chunk ID:** reddit_fairfax_square_apartments_0
+- **Text:** "Student 1 lived in Fairfax Square for one year with two roommates. Rent was approximately $2750 per month before utilities and deposits. Parking was adequate, the pool was nice, neighbors were generally quiet, and management was not intrusive. The location was convenient and close to daily necessities. Main drawback was the high cost."
+
+---
+
+**Chunk 3**
+- **Source:** `reddit_off_campus_housing_cost.txt`
+- **Chunk ID:** reddit_off_campus_housing_cost_2
+- **Text:** "Rooms in the $750-$800 range can still be found, although they often come with restrictions such as shared bathrooms, no guests, or strict house rules. Kings Park West and housing near Roberts Road may cost around $800-$850 per month. Student 4 lives in a townhouse with three roommates at $550/month with utilities of $60-$80 monthly, approximately 10 minutes from campus."
+
+---
+
+**Chunk 4**
+- **Source:** `gmu_offcampus_housing_guide.txt`
+- **Chunk ID:** gmu_offcampus_housing_guide_0
+- **Text:** "Students looking for apartments near George Mason University will have a variety of rental options to choose from. Speed up your off-campus housing search in Fairfax by knowing in advance if you plan on living alone or with roommates, what kind of amenities you want your new place to have, which area of town you want to live in, and your monthly budget for rent."
+
+---
+
+**Chunk 5**
+- **Source:** `tips_for_offcampus_housing.txt`
+- **Chunk ID:** tips_for_offcampus_housing_2
+- **Text:** "Transportation and parking can be a challenge in Northern Virginia. If you do not have a car, look for a place to live close to public transportation. Be sure to look into the local bus, Metro, and Mason Shuttle schedules. Additionally, Fairfax City and Fairfax County legally limit the number of residents to four per residence."
+
+----
 ## Spec Reflection
 
 <!-- Reflect on how planning.md shaped your implementation.
