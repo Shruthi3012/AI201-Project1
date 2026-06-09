@@ -1,8 +1,8 @@
-# The Unofficial Guide — Project 1
+# The Unofficial Guide - Project 1
 
 > **How to use this template:**
 > Complete each section *after* you've built and tested the corresponding part of your system.
-> Do not write placeholder text — if a section isn't done yet, leave it blank and come back.
+> Do not write placeholder text - if a section isn't done yet, leave it blank and come back.
 > Every section below is required for submission. One-liners will not receive full credit.
 
 ---
@@ -11,7 +11,7 @@
 
 <!-- What topic or category of knowledge does your system cover?
      Why is this knowledge valuable, and why is it hard to find through official channels?
-     Example: "Student reviews of CS professors at [university] — useful because official
+     Example: "Student reviews of CS professors at [university] - useful because official
      course descriptions don't reflect teaching style, exam difficulty, or workload." -->
     
     This system covers GMU off-campus housing experiences, including student reviews of nearby apartments, rental costs, safety perceptions, transportation options, and leasing advice.
@@ -23,7 +23,7 @@ This knowledge is valuable because students making housing decisions need real e
 
 <!-- List every source you collected documents from.
      Be specific: include URLs, subreddit names, forum thread titles, or file names.
-     Aim for variety — sources that together cover different subtopics or perspectives. -->
+     Aim for variety - sources that together cover different subtopics or perspectives. -->
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
@@ -58,7 +58,7 @@ This knowledge is valuable because students making housing decisions need real e
 
 **Why these choices fit your documents:**
 
-The dataset contains a mix of Reddit discussions and official GMU housing pages. Reddit posts often include apartment names, rent figures, and review opinions within a single paragraph. A 500-character chunk is large enough to keep a full opinion or cost fact together without making embeddings noisy. The 100-character overlap ensures that information spanning a chunk boundary — such as an apartment name at the end of one sentence and its rent in the next — is not lost during retrieval. A minimum length filter of 80 characters removes very short fragments with little semantic meaning.
+The dataset contains a mix of Reddit discussions and official GMU housing pages. Reddit posts often include apartment names, rent figures, and review opinions within a single paragraph. A 500-character chunk is large enough to keep a full opinion or cost fact together without making embeddings noisy. The 100-character overlap ensures that information spanning a chunk boundary - such as an apartment name at the end of one sentence and its rent in the next - is not lost during retrieval. A minimum length filter of 80 characters removes very short fragments with little semantic meaning.
 
 **Final chunk count:** 67 chunks across 9 documents
 
@@ -83,11 +83,11 @@ In a production system with no cost constraint, I would evaluate OpenAI's text-e
 
 ## Grounded Generation
 
-<!-- Explain how your system enforces grounding — how does it prevent the LLM from answering
+<!-- Explain how your system enforces grounding - how does it prevent the LLM from answering
      beyond the retrieved documents?
      Describe both your system prompt (what instruction you gave the model) and any structural
      choices (e.g., how you formatted the context, whether you filtered low-relevance chunks).
-     Do not just say "I told it to use the documents" — show the actual instruction or explain
+     Do not just say "I told it to use the documents" - show the actual instruction or explain
      the mechanism. -->
 
 **System prompt grounding instruction:**
@@ -116,13 +116,13 @@ Source attribution is handled programmatically, not left to the LLM. After gener
 ## Evaluation Report
 
 <!-- Run your 5 test questions from planning.md through your system and record the results.
-     Be honest — a partially accurate or inaccurate result that you explain well is more
+     Be honest - a partially accurate or inaccurate result that you explain well is more
      valuable than a suspiciously perfect result. -->
 
 
 | # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 | What do students say about Fairfax Square Apartments? | Mixed reviews — good location, but high rent (~$2750/month), mold, hidden fees, thin walls, rent increases | Mentioned $2750/month rent, mold, broken appliances, hidden fees, thin walls, and rent increases. Also noted positive aspects: location, parking, pool | Relevant | Accurate |
+| 1 | What do students say about Fairfax Square Apartments? | Mixed reviews - good location, but high rent (~$2750/month), mold, hidden fees, thin walls, rent increases | Mentioned $2750/month rent, mold, broken appliances, hidden fees, thin walls, and rent increases. Also noted positive aspects: location, parking, pool | Relevant | Accurate |
 | 2 | What is the typical monthly rent for off-campus housing near GMU? | $750–$1200/month when sharing; studios ~$1325, one-bedrooms ~$1675 alone | Reported $750–$1200/month when sharing, studios at $1325, one-bedrooms at $1675, and noted costs have risen in recent years | Relevant | Accurate |
 | 3 | What platforms should GMU students use to find off-campus housing? | och.gmu.edu or Apartments.com; avoid Facebook and Craigslist | Recommended och.gmu.edu as the official safe finder, mentioned Apartments.com, and warned against Facebook and Craigslist due to scam risk | Relevant | Accurate |
 | 4 | What are common problems students face with off-campus leasing near GMU? | Hidden fees, mold, pest issues, ignored maintenance, rent hikes, thin walls | Covered hidden fees, mold, pest infestations, maintenance being ignored, significant rent increases at renewal, and noise from thin walls | Relevant | Accurate |
@@ -136,39 +136,39 @@ Source attribution is handled programmatically, not left to the LLM. After gener
 Q1: s off‑campus housing cheaper than dorms at GMU?
 
 **Top retrieved chunks:**
-1. reddit_off_campus_housing_cost.txt — rent ranges $750–$1200, townhouse $550 + utilities
+1. reddit_off_campus_housing_cost.txt - rent ranges $750–$1200, townhouse $550 + utilities
 
-2. gmu_offcampus_housing_guide.txt — cost breakdown for studios ($1325) and one‑bedrooms ($1675)
+2. gmu_offcampus_housing_guide.txt - cost breakdown for studios ($1325) and one‑bedrooms ($1675)
 
-3. affordable_housing_virginia_square_ballston_gmu.txt — mentions $1400 for half of a two‑bedroom
+3. affordable_housing_virginia_square_ballston_gmu.txt - mentions $1400 for half of a two‑bedroom
 
-4. apartments_near_gmu_for_administrator.txt — budget up to $2200 for staff housing
+4. apartments_near_gmu_for_administrator.txt - budget up to $2200 for staff housing
 
-** Why relevant:** All retrieved chunks discuss off‑campus rent prices, but none mention dorm costs — explaining why the model correctly refused to answer.
+** Why relevant:** All retrieved chunks discuss off‑campus rent prices, but none mention dorm costs - explaining why the model correctly refused to answer.
 
 Q2: What platforms should GMU students use to find off‑campus housing?
 **Top retrieved chunks:**
-1.tips_for_offcampus_housing.txt — recommends och.gmu.edu and warns against Facebook/Craigslist
+1.tips_for_offcampus_housing.txt - recommends och.gmu.edu and warns against Facebook/Craigslist
 
-2.reddit_offcampus_housing.txt — confirms och.gmu.edu and Apartments.com as safe options
+2.reddit_offcampus_housing.txt - confirms och.gmu.edu and Apartments.com as safe options
 
-3.reddit_offcampus_housing_lessons.txt — mentions verified housing finder
+3.reddit_offcampus_housing_lessons.txt - mentions verified housing finder
 
-4.reddit_off_campus_housing_cost.txt — general housing cost context
+4.reddit_off_campus_housing_cost.txt - general housing cost context
 
 **Why relevant:  **Chunks directly mention och.gmu.edu and verified housing platforms, aligning perfectly with the expected answer.
 
 
 Q3: What do students say about Fairfax Square Apartments?
 **Top retrieved chunks:**
-1. reddit_fairfax_square_apartments.txt — rent ~$2750, mold, hidden fees, thin walls
+1. reddit_fairfax_square_apartments.txt - rent ~$2750, mold, hidden fees, thin walls
 
-2. best_apartments_under_2k_near_gmu.txt — mentions Trillium and Fairfax Square comparisons
+2. best_apartments_under_2k_near_gmu.txt - mentions Trillium and Fairfax Square comparisons
 
-3. reddit_offcampus_housing_lessons.txt — positive experience when not on ground floor
+3. reddit_offcampus_housing_lessons.txt - positive experience when not on ground floor
 
 **Why relevant:  **
-All chunks describe Fairfax Square experiences, including rent, amenities, and maintenance issues — producing a complete, accurate summary.
+All chunks describe Fairfax Square experiences, including rent, amenities, and maintenance issues - producing a complete, accurate summary.
 ---
 
 ## Example Responses
@@ -243,7 +243,7 @@ Overall, students have a generally positive experience at Fairfax Square Apartme
      "The answer was wrong" is not an explanation.
 
      "The relevant information was split across a chunk boundary, so retrieval returned
-     only half the context — the model didn't have enough to answer correctly" is an explanation.
+     only half the context - the model didn't have enough to answer correctly" is an explanation.
 
      "The embedding model treated the professor's nickname as out-of-vocabulary and returned
      results from an unrelated review" is an explanation. -->
@@ -258,7 +258,7 @@ Overall, students have a generally positive experience at Fairfax Square Apartme
 
 **Root cause (tied to a specific pipeline stage):**
 
-This failure occurs at the ingestion stage — a document coverage gap. The 9 source documents cover off-campus housing costs in detail but none of them mention GMU on-campus dorm pricing. When the query was run, retrieval correctly returned chunks about off-campus rent figures, but the LLM had no dorm cost data to compare against. Because the grounding instruction correctly prevents the model from using outside knowledge, it refused to answer rather than guessing. The failure is not a retrieval or generation error — it is a missing document problem.
+This failure occurs at the ingestion stage - a document coverage gap. The 9 source documents cover off-campus housing costs in detail but none of them mention GMU on-campus dorm pricing. When the query was run, retrieval correctly returned chunks about off-campus rent figures, but the LLM had no dorm cost data to compare against. Because the grounding instruction correctly prevents the model from using outside knowledge, it refused to answer rather than guessing. The failure is not a retrieval or generation error - it is a missing document problem.
 
 **What you would change to fix it:**
 
@@ -336,7 +336,7 @@ The planning.md AI Tool Plan stated that ChatGPT would be used for all milestone
 
 **Instance 2**
 
-- *What I gave the AI:* The generator.py system prompt and a description of answer quality issues — responses were missing information that existed in the documents, and source citations appeared as "Source 1, Source 2" instead of filenames.
+- *What I gave the AI:* The generator.py system prompt and a description of answer quality issues - responses were missing information that existed in the documents, and source citations appeared as "Source 1, Source 2" instead of filenames.
 - *What it produced:* An updated system prompt instructing the model to synthesize across all sources, and a revised context block format labeling each chunk with its filename instead of a number.
 - *What I changed or overrode:* Moved source attribution out of the LLM response entirely. Instead of asking the model to cite sources, the code now extracts source filenames directly from retrieved chunk metadata and displays them in a separate Gradio textbox, making attribution programmatically guaranteed rather than dependent on the model.
 
